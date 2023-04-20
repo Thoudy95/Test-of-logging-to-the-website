@@ -56,3 +56,28 @@ cy.contains('Learning')
 })
 
 })
+
+
+it('trying to login with special characters', () => {
+cy.get('input[type*="text"]')
+     .clear()
+	 .type('Jan?/%$!!*^~~+#4@@{}&łśśą@#')
+cy.get('input[type*="password"]')
+     .clear()
+	 .type('Kowalski$$2455&^*!!@#".??+ą/qś')
+cy.get('button[id*="login"]').click()
+ cy.contains('Invalid username/password')
+   	 .should('be.visible')
+})
+
+it('sql injection test', () => {
+cy.get('input[type*="text"]')
+     .clear()
+	 .type('http://uitestingplayground.com/sampleapp/product.php?id=10')
+cy.get('input[type*="password"]')
+     .clear()
+	 .type('http://uitestingplayground.com/sampleapp/product.php?id=10; INSERT INTO users (…)')
+cy.get('button[id*="login"]').click()
+ cy.contains('Invalid username/password')
+   	 .should('be.visible')
+})
