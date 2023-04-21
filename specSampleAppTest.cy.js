@@ -54,10 +54,7 @@ cy.contains('Learning')
     .should('be.visible')
     cy.url().should('include','/resources')
 })
-
-})
-
-
+	
 it('trying to login with special characters', () => {
 cy.get('input[type*="text"]')
      .clear()
@@ -81,3 +78,10 @@ cy.get('button[id*="login"]').click()
  cy.contains('Invalid username/password')
    	 .should('be.visible')
 })
+
+})
+
+
+
+
+
